@@ -4,7 +4,6 @@ import { arrayFind } from 'element-ui/src/utils/util';
 
 Watcher.prototype.mutations = {
   setData(states, data) {
-    const dataInstanceChanged = states._data !== data;
     states._data = data;
 
     this.execQuery();
@@ -16,11 +15,7 @@ Watcher.prototype.mutations = {
       this.assertRowKey();
       this.updateSelectionByRowKey();
     } else {
-      if (dataInstanceChanged) {
-        this.clearSelection();
-      } else {
-        this.cleanSelection();
-      }
+      this.cleanSelection();
     }
     this.updateAllSelected();
 
